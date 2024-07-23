@@ -3,6 +3,7 @@ import VButton from '../v-button/VButton.vue';
 import { photoDirectory } from '../../stores/photo-directory-store';
 import { ref } from 'vue';
 import VAlert from '../v-alert/VAlert.vue';
+import photos from '../../assets/photos.png';
 
 const errorText = ref('');
 
@@ -17,7 +18,7 @@ async function selectDirectory() {
 
 <template>
   <VAlert 
-    img="../../assets/photos.png"
+    :img="photos"
     title="Импортируйте фотографии" 
     description="Выберите папку, откуда будут импортированы фотографии"
   >

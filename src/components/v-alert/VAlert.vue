@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import VWindow from '../v-window/VWindow.vue';
 
 interface Props {
@@ -10,13 +9,12 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const src = computed(() => new URL(props.img, import.meta.url).href);
 </script>
 
 <template>
   <VWindow class="v-alert">
-    <img class="v-alert__img" width="64" height="64" :src="src" />
-    
+    <img class="v-alert__img" width="64" height="64" :src="props.img" />
+
     <div class="v-alert__info">
       <span class="v-alert__title">{{ props.title }}</span>
       <span class="v-alert__description">{{ props.description }}</span>
