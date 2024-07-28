@@ -1,11 +1,12 @@
 {
+  "id": "/photographer-assistant/",
   "background_color": "#2d2d2c",
   "dir": "ltr",
   "display": "standalone",
   "name": "Сортирялус",
   "orientation": "landscape",
   "short_name": "Сортирялус",
-  "start_url": "/",
+  "start_url": "/photographer-assistant/",
   "theme_color": "#2d2d2c",
   "icons": [
     {
