@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ComponentInstance } from 'vue';
-import FolderBadgePlus from './FolderBadgePlus.vue';
 import ChevronRight2 from './ChevronRight2.vue';
 import Folder from './Folder.vue';
 import { IconName } from './types/icon-name';
+import SidebarLeft from './SidebarLeft.vue';
 
 interface Props {
   name: IconName;
@@ -14,9 +14,9 @@ interface Props {
 const props = defineProps<Props>();
 
 const icons: Record<IconName, ComponentInstance<any>> = {
-  'FolderBadgePlus': FolderBadgePlus,
   'ChevronRight2': ChevronRight2,
-  'Folder': Folder
+  'Folder': Folder,
+  'SidebarLeft': SidebarLeft
 };
 
 const icon = computed(() => icons[props.name]);

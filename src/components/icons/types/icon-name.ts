@@ -1,1 +1,1 @@
-export type IconName = 'FolderBadgePlus' | 'ChevronRight2' | 'Folder';
+export type IconName = 'ChevronRight2' | 'Folder' | 'SidebarLeft';

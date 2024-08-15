@@ -4,7 +4,7 @@ import { computed, ref } from 'vue';
 import { useWindowSize, onKeyStroke } from '@vueuse/core'
 import { useDirectories } from '../../composables/useDirectories';
 
-const { height } = useWindowSize()
+const { height } = useWindowSize();
 
 const image = useImages();
 const directory = useDirectories();
@@ -33,7 +33,6 @@ onKeyStroke(async (e) => {
     if (currentImage.value === undefined) {
       imageIndex.value = image.images.value.length - 1;
     }
-
   }
 
   if (e.code === 'ArrowRight') {
@@ -46,17 +45,19 @@ onKeyStroke(async (e) => {
     imageIndex.value = imageIndex.value - 1 < 0 ? images.value.length -1 : imageIndex.value - 1;
   }
 });
+
+const imageHeight = computed(() => height.value - 20);
 </script>
 
 <template>
   <div class="image-viewer">
-    <img v-if="hasImage" class="image-viewer__image" :height="height" :src="currentImage.url" />
+    <img v-if="hasImage" class="image-viewer__image" :height="imageHeight" :src="currentImage.url" />
   </div>
 </template>
 
 <style>
 .image-viewer {
-  padding: 0 40px;
+  padding: 10px 20px;
 }
 
 .image-viewer__image {

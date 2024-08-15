@@ -1,13 +1,13 @@
 {
   "id": "/photographer-assistant/",
-  "background_color": "#2d2d2c",
+  "background_color": "#2C2C2E",
   "dir": "ltr",
   "display": "standalone",
   "name": "Сортирялус",
   "orientation": "landscape",
   "short_name": "Сортирялус",
   "start_url": "/photographer-assistant/",
-  "theme_color": "#2d2d2c",
+  "theme_color": "#242526",
   "icons": [
     {
       "src": "windows11/SmallTile.scale-100.png",

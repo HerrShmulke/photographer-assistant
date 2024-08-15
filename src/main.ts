@@ -1,6 +1,7 @@
-import { createApp } from 'vue'
-import './css/global.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import './css/global.css';
+import './css/animations.css';
+import App from './App.vue';
 
 if ("serviceWorker" in navigator) {
   self.addEventListener("load", async () => {

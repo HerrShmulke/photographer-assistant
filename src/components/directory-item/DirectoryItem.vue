@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import VIcon from '../icons/VIcon.vue';
+import DirectoryItemContent from './DirectoryItemContent.vue';
 
 interface Props {
   name: string;
+  index: number;
 }
 
 const props = defineProps<Props>();
-
 </script>
 
 <template>
   <div class="directory-item">
-    <!-- <img width="18" height="18" src="../../assets/folder.png" /> -->
     <VIcon class="directory-item__icon" name="Folder" :width="18" :height="18" />
-    <span class="directory-item__text">{{ props.name }}</span>
+
+    <DirectoryItemContent :text="props.name" :hotkey="props.index + 1" />
   </div>
 </template>
 
@@ -21,17 +22,18 @@ const props = defineProps<Props>();
 .directory-item {
   display: flex;
   align-items: center;
-  column-gap: 4px;
+  column-gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.directory-item__text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  text-wrap: nowrap;
-  font-size: 13px;
+.directory-item:hover {
+  background-color: #4A4A4D;
 }
 
 .directory-item__icon {
   flex-shrink: 0;
+  color: #2198E9;
 }
 </style>

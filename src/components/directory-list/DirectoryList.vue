@@ -3,29 +3,60 @@ import { computed, ref } from 'vue';
 import { useDirectories } from '../../composables/useDirectories';
 import DirectoryItem from '../directory-item/DirectoryItem.vue';
 import VIconButton from '../v-button/VIconButton.vue';
+import DirectoryItemEdit from '../directory-item/DirectoryItemEdit.vue';
 
 const directory = useDirectories();
 
 directory.getDirectories();
 
 const directories = computed(() => directory.directories.value.map((folder, index) => ({
-  name: `[${index + 1}] ${folder.name}`,
+  name: folder.name,
   entry: folder.entry
 })));
 
 const isOpened = ref(true);
 
+const iconClass = ref('');
+
 function toggleOpenState() {
   isOpened.value = !isOpened.value;
+  iconClass.value = 'bounce';
+}
+
+function onAnimationEnd() {
+  iconClass.value = '';
+}
+
+const isDirectoryCreated = ref(false);
+
+function createNewFolder() {
+  isDirectoryCreated.value = true;
 }
 </script>
 
 <template>
   <div class="directory-list" :class="{ 'directory-list--open': isOpened }">
-    <VIconButton class="directory-list__icon" name="ChevronRight2" :width="24" :height="24" @click="toggleOpenState" />
+    <VIconButton 
+      :icon-class="iconClass" 
+      class="directory-list__icon" 
+      name="SidebarLeft" 
+      :width="24" 
+      :height="24" 
+      @click="toggleOpenState" 
+      @animationend="onAnimationEnd" 
+    />
 
+    <VIconButton
+      class="directory-list__add-icon" 
+      name="FolderBadgePlus"
+      :width="32"
+      :height="32"
+      @click="createNewFolder"
+    />
+    
     <div v-if="isOpened" class="directory-list__container">
-      <DirectoryItem v-for="folder in directories" :name="folder.name" :folder-handle="folder.entry" />
+      <DirectoryItemEdit v-if="isDirectoryCreated" />
+      <DirectoryItem v-for="(folder, index) in directories" :index="index" :name="folder.name" />
     </div>
   </div>
 </template>
@@ -37,23 +68,23 @@ function toggleOpenState() {
 }
 
 .directory-list__container {
+  padding: 44px 16px;
+  background-color: #3A3A3C;
   height: 100vh;
-  width: 200px;
-  padding: 10px;
-  background-color: #242526;
-  border-right: 1px solid #000;
+  width: 240px;
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
-}
-
-.directory-list--open .directory-list__icon {
-  transform: scale(-1);
 }
 
 .directory-list__icon {
   position: absolute;
-  right: -34px;
-  top: 10px;
+  left: 16px;
+  top: 6px;
+}
+
+.directory-list__add-icon {
+  left: 48px;
+  top: 6px;
+  position: absolute;
 }
 </style>
