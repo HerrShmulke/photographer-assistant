@@ -9,7 +9,7 @@ const directory = useDirectories();
 
 directory.getDirectories();
 
-const directories = computed(() => directory.directories.value.map((folder, index) => ({
+const directories = computed(() => directory.directories.value.map((folder) => ({
   name: folder.name,
   entry: folder.entry
 })));
@@ -28,10 +28,6 @@ function onAnimationEnd() {
 }
 
 const isDirectoryCreated = ref(false);
-
-function createNewFolder() {
-  isDirectoryCreated.value = true;
-}
 </script>
 
 <template>
@@ -44,14 +40,6 @@ function createNewFolder() {
       :height="24" 
       @click="toggleOpenState" 
       @animationend="onAnimationEnd" 
-    />
-
-    <VIconButton
-      class="directory-list__add-icon" 
-      name="FolderBadgePlus"
-      :width="32"
-      :height="32"
-      @click="createNewFolder"
     />
     
     <div v-if="isOpened" class="directory-list__container">
